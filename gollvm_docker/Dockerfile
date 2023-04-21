@@ -49,4 +49,4 @@ RUN apt install -y vim
 
 ENV LD_LIBRARY_PATH=/gollvm/install/lib64
 
-ENV PATH="/gollvm/install/bin/:$PATH"
+ENV PATH="/opt/riscv/bin/:$PATH"

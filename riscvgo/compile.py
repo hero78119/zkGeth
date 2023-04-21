@@ -51,7 +51,7 @@ def load_minigeth(fn="minigeth"):
         if symbol.name == "runtime.gcenable":
           print(nsym, symbol.name)
           # nop gcenable
-          prog_dat[symbol['st_value']:symbol['st_value']+8] = b"\x03\xe0\x00\x08\x00\x00\x00\x00"
+          prog_dat[symbol['st_value']:symbol['st_value']+8] = b"\x00\xe0\x00\x00\x00\x00\x00\x13"
           found += 1
     except Exception:
       #traceback.print_exc()
