@@ -1,3 +1,6 @@
 [submodule "minigeth"]
 	path = minigeth
 	url = git@github.com:hero78119/minigeth.git
+[submodule "risc0-nova"]
+	path = risc0-nova
+	url = git@github.com:hero78119/risc0-nova.git
