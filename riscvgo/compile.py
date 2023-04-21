@@ -19,6 +19,7 @@ def load_minigeth(fn="minigeth"):
 
   # program memory (16 MB)
   prog_size = (end_addr+0xFFF) & ~0xFFF
+  # prog_size = end_addr
   prog_dat = bytearray(prog_size)
   print("malloced 0x%x for program" % prog_size)
 
@@ -51,7 +52,7 @@ def load_minigeth(fn="minigeth"):
         if symbol.name == "runtime.gcenable":
           print(nsym, symbol.name)
           # nop gcenable
-          prog_dat[symbol['st_value']:symbol['st_value']+8] = b"\x00\xe0\x00\x00\x00\x00\x00\x13"
+          prog_dat[symbol['st_value']:symbol['st_value']+8] = b"\x00\x00\x00\x00\x00\x00\x00\x13"
           found += 1
     except Exception:
       #traceback.print_exc()
