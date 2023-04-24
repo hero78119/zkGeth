@@ -4,3 +4,6 @@
 [submodule "risc0-nova"]
 	path = risc0-nova
 	url = git@github.com:hero78119/risc0-nova.git
+[submodule "rrs"]
+	path = rrs
+	url = git@github.com:hero78119/rrs.git
