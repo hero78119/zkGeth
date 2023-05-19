@@ -12,5 +12,5 @@ fi
 
 
 source venv/bin/activate
-python ./compile.py
+python3 ./compile.py
 deactivate
