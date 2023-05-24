@@ -1,6 +1,5 @@
 package main
 
-//go:nosplit
 func main() {
     a := 1
     b := 2
