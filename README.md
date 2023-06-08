@@ -1,6 +1,13 @@
 # zkGeth
 zero knowledge proof for Go ethereum client geth
 
+### Pre-requisite
+- Go version: 1.20+
+- Rustc: version 1.68.2+
+
+### Demo
+check Makefile and try `make demo`
+
 ### Directory Layout
 
 ```

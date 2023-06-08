@@ -7,7 +7,7 @@ dump_assm:
 	sudo docker run --rm -v  '$(WORKING_DIR):/zkGeth' -it zkgeth/riscv_toolchain bash -c "riscv64-unknown-linux-gnu-objdump -D /zkGeth/riscvgo/demo > /zkGeth/tools/demo.s"
 
 tools:
-	cd tools/ && sudo docker build -t zkgeth/riscv_toolchain -f Dockerfile .. --progress=plain
+	cd tools/ && bash clone.sh && sudo docker build -t zkgeth/riscv_toolchain -f Dockerfile .. --progress=plain
 vm:
 	cd $(WORKING_DIR)risc0-nova/risc0/r0vm && cargo build --release
 
