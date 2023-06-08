@@ -5,6 +5,7 @@ import (
     "os"
     "encoding/binary"
     "fmt"
+    "unsafe"
 )
 
 func toFilename(key string) string {
@@ -32,6 +33,7 @@ func cacheWrite(key string, value []byte) {
 }
 
 func main() {
+    // test memory read/write via fileI/O
     var a, b, c, d, e uint32
     a = 1
     b = 2
@@ -41,4 +43,26 @@ func main() {
     bs := make([]byte, 8)
     binary.LittleEndian.PutUint32(bs, e)
     cacheWrite("hello", bs)
+
+    // test directly virtual memory write then read
+    p := unsafe.Pointer(uintptr(0xd0000140f0))
+    var pointer *uint32 = (*uint32)(p)
+    *pointer = 12345 // write
+    binary.LittleEndian.PutUint32(bs, *pointer) // read to buffer
+    cacheWrite("hello", bs) // store to file io
+
+
+    // test simple goroutine + channel
+    r := make(chan uint32)
+    go func() {
+	for {
+	    r <- 0xdead
+	    r <- 0xbeef
+        }
+    }()
+    binary.LittleEndian.PutUint32(bs, <-r)
+    cacheWrite("hello", bs)
+    binary.LittleEndian.PutUint32(bs, <-r)
+    cacheWrite("hello", bs)
+
 }
