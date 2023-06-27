@@ -1,16 +1,5 @@
 if [[ ! -f minigeth ]]; then
     SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-    sudo docker run --rm -v $SCRIPTPATH:/riscvgo -v $SCRIPTPATH/../minigeth:/minigeth --name go1.19 -it golang:1.19 bash /riscvgo/build.sh
+    sudo docker run --rm -v $SCRIPTPATH:/riscvgo -e GOOS=$TARGETOS -e GOARCH=$TARGETARCH -v $SCRIPTPATH/../minigeth:/minigeth --name 1.21rc2 -it golang:1.21rc2 bash /riscvgo/build.sh
 fi
 
-if [[ ! -d venv ]]; then
-    python3 -m venv venv
-    source venv/bin/activate
-    pip3 install -r requirements.txt
-    deactivate
-fi
-
-
-source venv/bin/activate
-python3 ./compile.py
-deactivate
